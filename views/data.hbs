@@ -1,0 +1,57 @@
+<div>
+  <h2>DATA</h2>
+  <button onclick="myFunction()">Reload page</button> 
+  <button id="button">Download XLSX</button>  
+  <br>
+  <br>
+  <div>
+    <table class="table" id="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">CLIENT ID</th>
+          <th scope="col">DEVICE ID</th>
+          <th scope="col">TOTALIZED WEIGHT</th>
+          <th scope="col">SPEED</th>
+          <th scope="col">FLOW RATE</th>
+          <th scope="col">Date</th>
+          <th scope="col">Time Stamp</th>
+        </tr>
+      </thead>
+      {{#each records}}
+      <tbody>
+        <tr>
+          <td>{{inc @index inc=1}}</td>
+          <td>{{clientId}}</td>
+          <td>{{deviceId}}</td>
+          <td>{{totalizedWeight}}</td>
+          <td>{{speed}}</td>
+          <td>{{flowRate}}</td>
+          <td>{{date}}</td>
+          <td>{{timestamp}}</td>
+        </tr>
+      </tbody>
+      {{/each}}
+    </table>
+  </div>
+</div>
+<script>
+function myFunction() {
+    location.reload();
+}
+$(function(){
+  var ExportButtons = document.getElementById('table');
+  var instance = new TableExport(ExportButtons, {
+    formats: ['xlsx'],
+    exportButtons: false,
+    filename: 'Records'
+  });
+  var exportData = instance.getExportData()['table']['xlsx'];
+  var XLSbutton = document.getElementById('button');
+  XLSbutton.addEventListener('click', function (e) {
+    //                   // data          // mime              // name              // extension
+    instance.export2file(exportData.data, exportData.mimeType, exportData.filename, exportData.fileExtension);
+  });
+
+});
+</script>
