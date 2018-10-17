@@ -28,7 +28,8 @@
     "morgan": "^1.9.0",
     "rollbar": "^2.4.2",
     "serve-favicon": "^2.5.0",
-    "tableexport": "^5.0.2"
+    "tableexport": "^5.0.2",
+    "toastr": "^2.1.4"
   },
   "devDependencies": {
     "expect": "^23.4.0",

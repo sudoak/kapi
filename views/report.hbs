@@ -1,0 +1,72 @@
+<div>
+    <nav class="navbar navbar-expand-lg  navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">KEHKASHAN AUTOMATION</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+            <a class="nav-link" href="/data">Home</a>
+            </li>
+            <li class="nav-item active">
+            <a class="nav-link" href="/report" >Reports</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tdata">Test Data</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        </div>
+    </nav>
+    <div style="margin-top:20px">
+        <div>
+            <form id="target" class="form-inline">
+                <div class="form-group mb-2">
+                    <label for="date" class="sr-only">Date</label>
+                    <input type="date" name="date" id="date">
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                    <label for="inputPassword2" class="sr-only">Password</label>
+                    <select class="form-control">
+                        <option>Default select  </option>
+                        <option>ABCD</option>
+                        <option>JUKI</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">SUBMIT</button>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+            
+            </div>
+            <div class="col-sm">
+            
+            </div>
+            <div class="col-sm">
+            
+            </div>
+        </div>
+        <div style="margin-top:20px">
+            <div id="chart"></div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script>
+    $(function(){
+        toastr.info('Are you the 6 fingered man?')
+        $( "#target" ).submit(function( event ) {
+            var a = $(this).find(':input');
+            if(a[0].value){
+                console.log(a[0].value)
+            }
+            event.preventDefault();
+        })    
+    });  
+</script>

@@ -26,6 +26,7 @@ mtz.tz.setDefault("Asia/Kolkata");
 
 //Modals
 let R = require('./modals/records.schema')
+let D = require('./modals/data.schema')
 
 //Middleware
 //app.use(helmet())
@@ -77,6 +78,31 @@ app.get('/data',async (req,res)=>{
         res.status(500).json({err:e})
     }
 });
+app.get('/tdata',async (req,res)=>{
+    try{
+        let o = await D.find({},{"__v":0}).sort({timestamp:-1}).limit(100)
+        res.render('tdata',
+        {
+            title: 'KEHKASHAN',
+            name:"ak",
+            records : o,
+            values : _.map(o,'data'),
+            helpers: {
+                foo: function (d) { return 'foo.'+d; },
+                inc: function(number, options) {
+                    if(typeof(number) === 'undefined' || number === null)
+                        return null;
+                        
+                    // Increment by inc parameter if it exists or just by one
+                    return number + (options.hash.inc || 1);
+                }
+            }}
+        );
+    }catch(e){
+        console.log(e)
+        res.status(500).json({err:e})
+    }
+});
 //Routes
 app.get('/', async (req, res) => {
     try{
@@ -97,6 +123,9 @@ app.get('/', async (req, res) => {
     }
 })
 
+app.get('/report', async (req,res)=>{
+    res.render('report')
+})
 //get data from sensor
 app.post('/data',async (req,res)=>{
     try{
